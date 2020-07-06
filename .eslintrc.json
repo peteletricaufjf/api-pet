@@ -1,0 +1,18 @@
+{
+  "extends": "eslint:recommended",
+  "env": {
+    "node": true,
+    "commonjs": true,
+    "es2020": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
+  "rules": {
+    "indent": ["error", "tab"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "prefer-const": ["error"],
+    "no-var": ["error"]
+  }
+}
