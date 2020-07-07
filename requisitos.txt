@@ -1,0 +1,11 @@
+CRUD (Create, Read, Update, Delete)
+
+- Inserir um usuário (POST /user)
+- Buscar os dados do usuário (GET /user)
+- Alterar os dados (PUT /user)
+- Excluir a conta (DELETE /user)
+
+- Login
+- Alterar a foto
+- Alterar a senha
+- Histórico do usuário
