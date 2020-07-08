@@ -1,5 +1,8 @@
+const { User } = require('../entities/user');
+const { Address } = require('../entities/address');
+
 const users = [
-	{
+	new User({
 		id: '1',
 		name: 'Gustavo Moraes Lopes',
 		birthday: '1994-04-20',
@@ -9,19 +12,21 @@ const users = [
 		course: 'engenharia',
 		rg: 'mg-111.111.11',
 		phone: '(11)91234-5678',
-		address: {
+		address: new Address({
 			city: 'Juiz de Fora',
 			street: 'Rio Branco',
 			number: 10,
 			neighbourhood: 'Centro',
-		},
-	},
+		}),
+	}),
 ];
 
-function getUserById(id) {
-	return users.find(user => user.id === id);
+class UserService {
+	getUserById(id) {
+		return users.find(user => user.id === id);
+	}
 }
 
 module.exports = {
-	getUserById,
+	UserService,
 };
