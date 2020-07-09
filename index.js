@@ -31,5 +31,7 @@ app.patch('/user/:id', (req, res) => {
 
 	return res.json(user);
 });
+app.delete('/user/:id', (req, res) => {});
+app.post('/user', (req, res) => {});
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${ port }`));
