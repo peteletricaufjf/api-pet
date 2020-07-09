@@ -65,7 +65,16 @@ class UserService {
 	}
 
 	updateUser(id, novasInformacoes) {
+		const user = this.getUserById(id);
 
+		Object.keys(user).forEach(key => {
+			const value = novasInformacoes[key];
+			if (value != null) {
+				user[key] = value;
+			}
+		});
+
+		return user;
 	}
 }
 
