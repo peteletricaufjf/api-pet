@@ -7,6 +7,11 @@ const port = 3000;
 
 const userService = new UserService();
 
+app.get('/user', (req, res) => {
+	const users = userService.getAll();
+	return res.json(users);
+});
+
 app.get('/user/:id', (req, res) => {
 	const id = req.params.id;
 	const user = userService.getUserById(id);
