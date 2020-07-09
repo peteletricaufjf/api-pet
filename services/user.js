@@ -63,6 +63,10 @@ class UserService {
 	getUserById(id) {
 		return users.find(user => user.id === id);
 	}
+
+	updateUser(id, novasInformacoes) {
+
+	}
 }
 
 module.exports = {
