@@ -55,6 +55,8 @@ const users = [
 	}),
 ];
 
+let currentId = 9;
+
 class UserService {
 	getAll() {
 		return users;
@@ -86,6 +88,14 @@ class UserService {
 
 		return deletedUser;
 	}
+
+	createUser(user) {
+		user.id = `${ currentId++ }`;
+		users.push(user);
+
+		return user;
+	}
+
 }
 
 module.exports = { UserService };

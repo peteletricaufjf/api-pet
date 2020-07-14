@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { UserService } = require('./services/user');
+const { User } = require('./entities/user');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -36,6 +37,15 @@ app.delete('/user/:id', (req, res) => {
 	userService.deleteUser(id);
 	return res.status(200);
 });
-app.post('/user', (req, res) => {});
+app.post('/user', (req, res) => {
+	const body = req.body;
+	const user = new User(body);
+	const createdUser = userService.createUser(user);
+	return res.json(createdUser);
+});
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${ port }`));
+app.get('/user/:id/address', (req, res) => {});
+app.put('/user/:id/address', (req, res) => {});
+app.delete('/user/:id/address', (req, res) => {});
+
+app.listen(port, () => console.log(`app listening at port ${ port }`));
