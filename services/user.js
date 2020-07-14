@@ -76,8 +76,16 @@ class UserService {
 
 		return user;
 	}
+
+	deleteUser(id) {
+		// users = users.filter(user => user.id !== id);
+
+		const index = users.findIndex(user => user.id === id);
+		const deletedUser = users[index];
+		delete users[index];
+
+		return deletedUser;
+	}
 }
 
-module.exports = {
-	UserService,
-};
+module.exports = { UserService };
