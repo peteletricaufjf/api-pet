@@ -5,6 +5,8 @@ CRUD (Create, Read, Update, Delete)
 - Alterar os dados (PUT /user)
 - Excluir a conta (DELETE /user)
 
+https://devcenter.heroku.com/articles/heroku-postgresql#connecting-in-node-js
+
 - Login
 - Alterar a foto
 - Alterar a senha
