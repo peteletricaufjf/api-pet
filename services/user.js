@@ -1,6 +1,8 @@
 const { User } = require('../entities/user');
 const { Address } = require('../entities/address');
+const { UserDao } = require('../dao/user');
 
+// TODO: Remover
 const users = [
 	new User({
 		id: '1',
@@ -55,17 +57,21 @@ const users = [
 	}),
 ];
 
+// TODO: Remover
 let currentId = 9;
 
+const userDao = new UserDao();
+
 class UserService {
-	getAll() {
-		return users;
+	async getAll() {
+		return await userDao.getAll();
 	}
 
-	getUserById(id) {
-		return users.find(user => user.id === id);
+	async getUserById(id) {
+		return await userDao.getById(id);
 	}
 
+	// TODO: Atualizar
 	updateUser(id, novasInformacoes) {
 		const user = this.getUserById(id);
 
@@ -79,6 +85,7 @@ class UserService {
 		return user;
 	}
 
+	// TODO: Atualizar
 	deleteUser(id) {
 		// users = users.filter(user => user.id !== id);
 
@@ -89,11 +96,27 @@ class UserService {
 		return deletedUser;
 	}
 
+	// TODO: Atualizar
 	createUser(user) {
 		user.id = `${ currentId++ }`;
 		users.push(user);
-
 		return user;
+	}
+
+	// TODO: Criar
+	getAddressById(id) {
+		const user = this.getUserById(id);
+		return user.address;
+	}
+
+	// TODO: Criar
+	updateAddress(id, novoEndereco) {
+		const user = this.getUserById(id);
+		if (user == null) {
+			return null;
+		}
+		user.address = new Address(novoEndereco);
+		return user.address;
 	}
 
 }

@@ -11,13 +11,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const userService = new UserService();
 
-app.get('/user', (req, res) => {
-	const users = userService.getAll();
+app.get('/user', async (req, res) => {
+	const users = await userService.getAll();
 	return res.json(users);
 });
-app.get('/user/:id', (req, res) => {
+app.get('/user/:id', async (req, res) => {
 	const id = req.params.id;
-	const user = userService.getUserById(id);
+	const user = await userService.getUserById(id);
 
 	if (user == null) {
 		return res.sendStatus(404);
@@ -44,8 +44,21 @@ app.post('/user', (req, res) => {
 	return res.json(createdUser);
 });
 
-app.get('/user/:id/address', (req, res) => {});
-app.put('/user/:id/address', (req, res) => {});
+app.get('/user/:id/address', (req, res) => {
+	const id = req.params.id;
+	const user = userService.getUserById(id);
+	if (user == null) {
+		return res.status(404);
+	}
+	const address = user.address;
+	return res.json(address);
+});
+app.put('/user/:id/address', (req, res) => {
+	const id = req.params.id;
+	const body = req.body;
+	const address = userService.updateAddress(id, body);
+	return res.json(address);
+});
 app.delete('/user/:id/address', (req, res) => {});
 
 app.listen(port, () => console.log(`app listening at port ${ port }`));
